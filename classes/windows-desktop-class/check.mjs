@@ -1,0 +1,13 @@
+import { assert, load } from './runtime.mjs';
+const { default: m } = await load('desktop/index.cjs');
+const policy = m.createPolicy({ scheme: 'classdemo', serverOrigin: 'https://server.example', externalOrigins: ['https://store.example'] });
+assert.equal(policy.trustedPage('classdemo://app/index.html'), true);
+assert.equal(policy.trustedPage('classdemo://attacker/index.html'), false);
+assert.equal(policy.externalURL('https://store.example/install'), true);
+assert.equal(policy.externalURL('https://store.example.attacker/'), false);
+assert.equal(m.preferences.sandbox, true);
+assert.equal(m.preferences.nodeIntegration, false);
+const request = { page: policy.ENTRY + '#player', origin: policy.ENTRY, permission: 'media', interacted: true, mainFrame: true, mediaTypes: ['audio'] };
+assert.equal(policy.mediaAllowed(request), true);
+assert.equal(policy.mediaAllowed({ ...request, page: policy.ENTRY + '#board' }), false);
+assert.equal(policy.mediaAllowed({ ...request, interacted: false }), false);
