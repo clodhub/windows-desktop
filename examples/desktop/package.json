@@ -9,5 +9,8 @@
     "@electron/asar": "3.4.1",
     "electron": "45.0.0",
     "electron-builder": "26.15.3"
+  },
+  "overrides": {
+    "minimatch@>=9.0.0 <11.0.1": "11.0.1"
   }
 }
