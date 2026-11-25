@@ -1097,7 +1097,7 @@
       }
     }
   },
-  "x-ourapps-modules": {
+  "x-clodhub-modules": {
     "desktop": "desktop/index.cjs"
   }
 }

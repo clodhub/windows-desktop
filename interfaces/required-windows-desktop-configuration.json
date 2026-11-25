@@ -70,5 +70,5 @@
     "externalOrigins"
   ],
   "additionalProperties": false,
-  "x-ourapps-modules": {}
+  "x-clodhub-modules": {}
 }

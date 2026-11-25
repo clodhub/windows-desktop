@@ -1,10 +1,10 @@
 {
-  "id": "ourapps-ae.windows-desktop",
+  "id": "clodhub.windows-desktop",
   "name": "Windows desktop",
   "kind": "component",
   "status": "example",
-  "package": "ourapps-ae/windows-desktop",
-  "version": "0.11.0",
+  "package": "clodhub/windows-desktop",
+  "version": "0.12.0",
   "ports": [
     {
       "id": "windows-desktop-configuration",
