@@ -3,7 +3,7 @@ const { app } = require('electron');
 const fs = require('node:fs');
 const { start } = require(app.isPackaged ? '../component/src/main.cjs' : '../../implementation/desktop/src/main.cjs');
 const verification = require(app.isPackaged ? '../component/verification/desktop.cjs' : '../../implementation/verification/desktop.cjs');
-const contextFile = process.env.AEPM_CONTEXT_FILE;
+const contextFile = process.env.CLOD_CONTEXT_FILE;
 const context = contextFile ? JSON.parse(fs.readFileSync(contextFile, 'utf8')) : null;
 if (context) {
   app.commandLine.appendSwitch('use-fake-device-for-media-stream');

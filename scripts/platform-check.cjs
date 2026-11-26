@@ -7,7 +7,7 @@ const { verifyRelocation } = require('./check-package-rejection.cjs');
 const { writeResult } = require('../implementation/verification/desktop.cjs');
 
 async function main() {
-  const context = JSON.parse(await fs.readFile(process.env.AEPM_CONTEXT_FILE, 'utf8'));
+  const context = JSON.parse(await fs.readFile(process.env.CLOD_CONTEXT_FILE, 'utf8'));
   if (context.mode !== 'local') throw new Error('authorization-denied');
   if (process.argv[2] === 'package') {
     if (!context.operations.includes('windows-package')) throw new Error('authorization-denied');
@@ -28,7 +28,7 @@ async function main() {
       child.once('error', error => { clearTimeout(timer); reject(error); });
       child.once('exit', code => { clearTimeout(timer); code === 0 ? resolve() : reject(new Error('process-failed')); });
     });
-    const childResult = JSON.parse(await fs.readFile(process.env.AEPM_RESULT_FILE, 'utf8'));
+    const childResult = JSON.parse(await fs.readFile(process.env.CLOD_RESULT_FILE, 'utf8'));
     if (['runId','package','id'].some(key => childResult[key] !== context[key])) throw new Error('result-invalid');
     const observed = Object.fromEntries(childResult.assertions.filter(assertion => assertion.actual !== null).map(assertion => [assertion.id, assertion.actual]));
     for (const id of ['executable-architecture','entrypoint-present','component-present','relocated-web','script-integrity']) observed[id] = true;

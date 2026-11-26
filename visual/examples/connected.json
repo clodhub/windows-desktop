@@ -7,19 +7,19 @@
   "focus": "component",
   "definitions": [
     {
-      "id": "clodhub.windows-desktop",
+      "id": "com.clodhub.windows-desktop",
       "name": "Windows desktop",
       "kind": "component",
       "status": "example",
-      "package": "clodhub/windows-desktop",
-      "version": "0.12.0",
+      "package": "pkg:clod/com.clodhub/windows-desktop",
+      "version": "0.13.0",
       "ports": [
         {
           "id": "windows-desktop-configuration",
           "name": "Host configuration",
           "direction": "input",
           "kind": "interface",
-          "type": "ae/windows-desktop-configuration",
+          "type": "com.clodhub/windows-desktop-configuration",
           "version": "1.0.0",
           "required": false,
           "cardinality": "one"
@@ -29,7 +29,7 @@
           "name": "Windows desktop",
           "direction": "output",
           "kind": "interface",
-          "type": "ae/desktop-host",
+          "type": "com.clodhub/desktop-host",
           "version": "1.0.0"
         }
       ],
@@ -47,7 +47,7 @@
           "name": "Host configuration",
           "direction": "output",
           "kind": "interface",
-          "type": "ae/windows-desktop-configuration",
+          "type": "com.clodhub/windows-desktop-configuration",
           "version": "1.0.0"
         }
       ],
@@ -65,7 +65,7 @@
           "name": "Windows desktop",
           "direction": "input",
           "kind": "interface",
-          "type": "ae/desktop-host",
+          "type": "com.clodhub/desktop-host",
           "version": "1.0.0",
           "required": true,
           "cardinality": "one"
@@ -78,7 +78,7 @@
     {
       "id": "component",
       "name": "Windows desktop",
-      "definition": "clodhub.windows-desktop",
+      "definition": "com.clodhub.windows-desktop",
       "configuration": {}
     },
     {

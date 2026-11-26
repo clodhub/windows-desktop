@@ -13,8 +13,8 @@ export function validateContext(context) {
 }
 
 export async function readContext() {
-  if (!process.env.AEPM_CONTEXT_FILE) throw new Error('context-missing');
-  return validateContext(JSON.parse(await fs.readFile(process.env.AEPM_CONTEXT_FILE, 'utf8')));
+  if (!process.env.CLOD_CONTEXT_FILE) throw new Error('context-missing');
+  return validateContext(JSON.parse(await fs.readFile(process.env.CLOD_CONTEXT_FILE, 'utf8')));
 }
 
 export function requireOperations(context, operations) {
@@ -30,18 +30,18 @@ export async function writeCanonical(file, value, exclusive = false) {
 }
 
 export async function writeResult(result) {
-  if (!process.env.AEPM_RESULT_FILE) throw new Error('result-missing');
-  await writeCanonical(process.env.AEPM_RESULT_FILE, result);
+  if (!process.env.CLOD_RESULT_FILE) throw new Error('result-missing');
+  await writeCanonical(process.env.CLOD_RESULT_FILE, result);
 }
 
 export async function writeCleanupResult(result) {
-  if (!process.env.AEPM_CLEANUP_RESULT_FILE) throw new Error('result-missing');
-  await writeCanonical(process.env.AEPM_CLEANUP_RESULT_FILE, result);
+  if (!process.env.CLOD_CLEANUP_RESULT_FILE) throw new Error('result-missing');
+  await writeCanonical(process.env.CLOD_CLEANUP_RESULT_FILE, result);
 }
 
 export function ownershipDirectory() {
-  if (!process.env.AEPM_OWNERSHIP_DIRECTORY) throw new Error('context-missing');
-  return path.resolve(process.env.AEPM_OWNERSHIP_DIRECTORY);
+  if (!process.env.CLOD_OWNERSHIP_DIRECTORY) throw new Error('context-missing');
+  return path.resolve(process.env.CLOD_OWNERSHIP_DIRECTORY);
 }
 
 export async function recordIntent(context, kind, requestedId, counter = 0) {

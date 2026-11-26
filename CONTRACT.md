@@ -22,13 +22,13 @@ There are no installer settings. The application gives these values in code to `
 - `outputRoot`: where `build` writes the desktop web build (`desktop/build/web`), an absolute path outside `webRoot`.
 
 ## Artefacts and dependencies
-Every implementation file maps to `components/windows-desktop/` with its `implementation/` prefix removed: `desktop/src/main.cjs` (`start`), `policy.cjs` (the rules above), `shell.cjs` (the window), `desktop/scripts/build.cjs` (`build`) and the verification helpers, including `verification/result.mjs`, which reads and writes aepm's check context and results. SOURCE.md records where each file came from and SOURCE.json pins the source hashes. The application supplies Electron itself; `examples/desktop` is a small independent program with a locked Electron 45.0.0 and electron-builder 26.15.3, used by the checks. `tools.lock.json` pins Node 26.5 and npm 11.17.
+Every implementation file maps to `components/windows-desktop/` with its `implementation/` prefix removed: `desktop/src/main.cjs` (`start`), `policy.cjs` (the rules above), `shell.cjs` (the window), `desktop/scripts/build.cjs` (`build`) and the verification helpers, including `verification/result.mjs`, which reads and writes clod's check context and results. SOURCE.md records where each file came from and SOURCE.json pins the source hashes. The application supplies Electron itself; `examples/desktop` is a small independent program with a locked Electron 45.0.0 and electron-builder 26.15.3, used by the checks. `tools.lock.json` pins Node 26.5 and npm 11.17.
 
 ## Provided interfaces
-`interfaces/desktop-host.json` is an OpenRPC 1.3.2 document for `ae/desktop-host` version 1.0.0: one method per exported function of `desktop/src/main.cjs`, `policy.cjs`, `shell.cjs`, `desktop/scripts/build.cjs` and `verification/desktop.cjs`, plus the functions of the returned policy (`Policy.*`) and shell (`Shell.*`), with parameters, results and the errors thrown as JSON Schema 2020-12.
+`interfaces/desktop-host.json` is an OpenRPC 1.3.2 document for `com.clodhub/desktop-host` version 1.0.0: one method per exported function of `desktop/src/main.cjs`, `policy.cjs`, `shell.cjs`, `desktop/scripts/build.cjs` and `verification/desktop.cjs`, plus the functions of the returned policy (`Policy.*`) and shell (`Shell.*`), with parameters, results and the errors thrown as JSON Schema 2020-12.
 
 ## Required interfaces
-`windows-desktop-configuration` (`ae/windows-desktop-configuration` version 1.0.0) is optional: the values above are the application's own and can be passed in code, so a design may leave it unconnected. `interfaces/required-windows-desktop-configuration.json` is the JSON Schema 2020-12 document of its fields.
+`windows-desktop-configuration` (`com.clodhub/windows-desktop-configuration` version 1.0.0) is optional: the values above are the application's own and can be passed in code, so a design may leave it unconnected. `interfaces/required-windows-desktop-configuration.json` is the JSON Schema 2020-12 document of its fields.
 
 ## Integration
 1. Build the desktop web client: `build({ webRoot: <web project>, outputRoot: <desktop/build/web> })` runs the web project's `npm run build:desktop` with `VITE_DESKTOP=1`. Set `APP_VERSION` and `VITE_APP_VERSION` for the version the program shows.

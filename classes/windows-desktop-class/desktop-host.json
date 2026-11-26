@@ -1,7 +1,7 @@
 {
   "openrpc": "1.3.2",
   "info": {
-    "title": "ae/desktop-host",
+    "title": "com.clodhub/desktop-host",
     "version": "1.0.0",
     "description": "Configured Electron host with local assets and capture and navigation policies (CommonJS modules desktop/src/main.cjs, policy.cjs, shell.cjs, desktop/scripts/build.cjs and verification/desktop.cjs). Call start once before Electron is ready so the scheme and sandbox are registered, with an absolute packaged webRoot. Display mode is read from document.documentElement.dataset.mode and modeEvent refreshes the page marker; only an interacted player main frame may capture; leaving the player page invalidates pending permission checks; closing every window quits the application.",
     "license": {
@@ -468,7 +468,7 @@
     },
     {
       "name": "writeResult",
-      "description": "Writes the helper result for the context's assertions atomically to AEPM_RESULT_FILE and returns it.",
+      "description": "Writes the helper result for the context's assertions atomically to CLOD_RESULT_FILE and returns it.",
       "params": [
         {
           "name": "context",
@@ -945,7 +945,7 @@
       },
       "ExecutionContext": {
         "type": "object",
-        "description": "The sanitised execution context aepm hands the helper (the fields read here).",
+        "description": "The sanitised execution context clod hands the helper (the fields read here).",
         "required": [
           "runId",
           "package",
@@ -1059,7 +1059,7 @@
           "cleanup"
         ],
         "additionalProperties": false,
-        "description": "Written in canonical JSON to the file named by AEPM_RESULT_FILE."
+        "description": "Written in canonical JSON to the file named by CLOD_RESULT_FILE."
       }
     },
     "errors": {

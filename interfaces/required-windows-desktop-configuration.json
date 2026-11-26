@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "ae/windows-desktop-configuration",
+  "title": "com.clodhub/windows-desktop-configuration",
   "x-version": "1.0.0",
   "description": "The application's settings for windows-desktop: the DesktopSettings passed to start and the paths passed to build.",
   "type": "object",

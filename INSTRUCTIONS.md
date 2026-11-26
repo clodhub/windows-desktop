@@ -1,6 +1,6 @@
 # Windows desktop instructions
 
-Package `clodhub/windows-desktop` version `0.12.0`. It provides `desktop-host` (type `ae/desktop-host`, version 1.0.0) and optionally requires `windows-desktop-configuration` (type `ae/windows-desktop-configuration`, version 1.0.0).
+Package `pkg:clod/com.clodhub/windows-desktop` version `0.13.0`. It provides `desktop-host` (type `com.clodhub/desktop-host`, version 1.0.0) and optionally requires `windows-desktop-configuration` (type `com.clodhub/windows-desktop-configuration`, version 1.0.0).
 
 ## For the agent
 
@@ -12,7 +12,7 @@ Package `clodhub/windows-desktop` version `0.12.0`. It provides `desktop-host` (
 
 ## For the developer
 
-- Install paths: `components/windows-desktop/desktop/src/{main,shell,policy}.cjs`, `components/windows-desktop/desktop/scripts/build.cjs`, `components/windows-desktop/verification/desktop.cjs`, `components/windows-desktop/verification/result.mjs` (the aepm verification context and result files, for the application's Windows verification scripts).
+- Install paths: `components/windows-desktop/desktop/src/{main,shell,policy}.cjs`, `components/windows-desktop/desktop/scripts/build.cjs`, `components/windows-desktop/verification/desktop.cjs`, `components/windows-desktop/verification/result.mjs` (the clod verification context and result files, for the application's Windows verification scripts).
 - Build: `build({webRoot, outputRoot})` runs `npm run build:desktop` with `VITE_DESKTOP=1` in your web project and copies `dist-desktop` to `outputRoot`. You own `APP_VERSION` and `VITE_APP_VERSION`.
 - Start: package the output as `resources/web`, ship the `desktop` sources with the application, make Electron resolvable from there, and call `start(settings)` once before Electron is ready.
 - Display mode is read from `document.documentElement.dataset.mode`; publish it and fire `modeEvent` before capture. Unknown modes deny capture.
@@ -26,6 +26,6 @@ From the component directory:
 - `npm test` or `node --test tests/policy.test.cjs tests/result.test.cjs tests/runtime.test.cjs tests/package-staging.test.cjs` (required)
 - `node scripts/platform-check.cjs package` (platform suite; installs Electron, needs network)
 - `node scripts/platform-check.cjs runtime` (Windows x64 only)
-- `python3 -m aepm review <digest> --store STORE --policy POLICY --trusted --allow-network` checks an archive fetched with `python3 -m aepm fetch clodhub/windows-desktop@VERSION --store STORE --from https://clodhub.com` and runs its suites.
+- `python3 -m clod review <digest> --store STORE --policy POLICY --trusted --allow-network` checks an archive fetched with `python3 -m clod fetch windows-desktop@VERSION --store STORE --from https://clodhub.com` and runs its suites.
 
 Heavy packaging and runtime checks are not part of the required set; run them only on a prepared machine.

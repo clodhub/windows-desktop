@@ -43,7 +43,7 @@ async function fixture({ denyPlayer = false, allowBoard = false, fakeDevices = t
     isDestroyed: () => false, focus() {}, getURL: () => entry + '#' + mode,
     getLastWebPreferences: () => ({ sandbox: true, contextIsolation: true, nodeIntegration: false }),
     async executeJavaScript(script) {
-      if (script === 'window.__aepmCaptureProbe') await pending;
+      if (script === 'window.__clodCaptureProbe') await pending;
       return await vm.runInContext(script, renderer);
     },
     sendInputEvent(event) {

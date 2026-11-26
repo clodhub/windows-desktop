@@ -14,7 +14,7 @@ async function writeResult(context, observed) {
     : { id, passed: observed[id] === true, actual: Object.hasOwn(observed, id) ? observed[id] : null });
   const result = { format: 1, runId: context.runId, package: context.package, id: context.id,
     assertions, artifacts: [], resources: [], cleanup: { required: true, attempted: true, completed: false, reason: '' } };
-  const target = process.env.AEPM_RESULT_FILE;
+  const target = process.env.CLOD_RESULT_FILE;
   const handle = await fs.open(target + '.pending', 'wx', 0o600);
   try { await handle.writeFile(canonical(result)); await handle.sync(); } finally { await handle.close(); }
   await fs.rename(target + '.pending', target);
@@ -32,11 +32,11 @@ async function captureAfterInput(win) {
   const contents = win.webContents;
   contents.focus();
   const point = await contents.executeJavaScript(`(() => {
-    document.getElementById('aepm-capture-probe')?.remove();
+    document.getElementById('clod-capture-probe')?.remove();
     const state = {done:false,activated:false,granted:false,ended:false,count:0};
-    window.__aepmCaptureProbe = state;
+    window.__clodCaptureProbe = state;
     const button = document.createElement('button');
-    button.id = 'aepm-capture-probe'; button.type = 'button'; button.textContent = 'Capture check';
+    button.id = 'clod-capture-probe'; button.type = 'button'; button.textContent = 'Capture check';
     Object.assign(button.style,{position:'fixed',left:'8px',top:'8px',width:'32px',height:'32px',zIndex:'2147483647',pointerEvents:'auto'});
     button.onclick = async event => {
       state.activated = event.isTrusted && navigator.userActivation.hasBeenActive;
@@ -60,7 +60,7 @@ async function captureAfterInput(win) {
   contents.sendInputEvent({ type: 'mouseUp', ...point, button: 'left', clickCount: 1 });
   const deadline = Date.now() + 5000;
   while (Date.now() < deadline) {
-    const observed = await contents.executeJavaScript('window.__aepmCaptureProbe');
+    const observed = await contents.executeJavaScript('window.__clodCaptureProbe');
     if (observed?.done) return observed;
     await new Promise(resolve => setTimeout(resolve, 25));
   }

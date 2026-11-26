@@ -14,4 +14,4 @@ Tests in `tests/` and `desktop/test/` hashes in `SOURCE.json` (`policy.test.cjs`
 
 The manifest marks the `windows-desktop-configuration` requirement `optional: true` and the visual definition draws it as not required (windows-desktop-configuration is a connector for values the application can also pass in code, so a design may leave it unconnected).
 
-`implementation/verification/result.mjs` is a copy of video-calls' `implementation/verification/result.mjs` (the aepm verification context and result protocol), so Windows verification does not depend on video-calls.
+`implementation/verification/result.mjs` is a copy of video-calls' `implementation/verification/result.mjs` (the clod verification context and result protocol), so Windows verification does not depend on video-calls.
